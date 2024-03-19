@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manipulação de Texto com JavaScript</title>
+<style>
+  #texto {
+    font-size: 16px;
+    color: black;
+  }
+</style>
+</head>
+<body>
+
+<div id="texto">
+  <p>Este é um texto de exemplo.</p>
+</div>
+
+<button onclick="alterarTamanhoFonte()">Alterar Tamanho da Fonte</button>
+<button onclick="alterarCorFonte()">Alterar Cor da Fonte</button>
+<button onclick="inserirTexto()">Inserir Texto</button>
+
+<script>
+function alterarTamanhoFonte() {
+  var texto = document.getElementById("texto");
+  var tamanhoAtual = window.getComputedStyle(texto, null).getPropertyValue("font-size");
+  var novoTamanho = parseInt(tamanhoAtual) + 2;
+  texto.style.fontSize = novoTamanho + "px";
+}
+
+function alterarCorFonte() {
+  var texto = document.getElementById("texto");
+  var cores = ["red", "blue", "green", "orange", "purple", "black"]; // cores disponíveis
+  var corAtual = texto.style.color;
+  var novaCor = cores[Math.floor(Math.random() * cores.length)]; // escolhe uma cor aleatória
+  while (novaCor === corAtual) {
+    novaCor = cores[Math.floor(Math.random() * cores.length)]; // garante que a nova cor é diferente da atual
+  }
+  texto.style.color = novaCor;
+}
+
+function inserirTexto() {
+  var novoTexto = prompt("Insira o texto que deseja adicionar:");
+  if (novoTexto !== null && novoTexto !== "") {
+    var paragrafo = document.createElement("p");
+    paragrafo.textContent = novoTexto;
+    document.getElementById("texto").appendChild(paragrafo);
+  }
+}
+</script>
+
+</body>
+</html>
